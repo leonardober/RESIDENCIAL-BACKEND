@@ -12,10 +12,19 @@ export const crearSancion = async (req, res) => {
 
 export const obtenerSanciones = async (req, res) => {
   try {
-    const sanciones = await Sancion.find();
+    const sanciones = await Sancion.find().populate('apartamento');
     res.json(sanciones);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener sanciones', error });
+  }
+};
+
+export const actualizarSancion = async (req, res) => {
+  try {
+    const sancionActualizada = await Sancion.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(sancionActualizada);
+  } catch (error) {
+    res.status(400).json({ mensaje: 'Error al actualizar sanción', error });
   }
 };
 

@@ -1,26 +1,25 @@
+// models/Pago.js
 import mongoose from 'mongoose';
 
 const pagoSchema = new mongoose.Schema({
   apartamento: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Apartamento',
-    required: true,
+    type: String,
+    required: true
   },
   monto: {
     type: Number,
-    required: true,
+    required: true
   },
-  fechaPago: {
+  fecha: {
     type: Date,
-    required: true,
+    required: true
   },
-  tipo: {
+  estado: {
     type: String,
     enum: ['adelantado', 'retrasado'],
-    required: true,
-  },
+    required: true
+  }
 });
 
-const Pago = mongoose.model('Pago', pagoSchema);
+export default mongoose.model('Pago', pagoSchema);
 
-export default Pago;

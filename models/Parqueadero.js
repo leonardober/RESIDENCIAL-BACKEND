@@ -3,27 +3,22 @@ import mongoose from 'mongoose';
 const parqueaderoSchema = new mongoose.Schema({
   tipo: {
     type: String,
-    enum: ['carro', 'moto'],
-    required: true,
+    required: true
   },
   placa: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
-  visitante: {
-    type: String,
-    required: true,
-  },
-  apartamento: {
-    type: String,
-    required: true,
-  },
-  fecha: {
+  fechaHora: {
     type: Date,
-    default: Date.now,
+    required: true
+  },
+  estado: {
+    type: String,
+    enum: ['ocupado', 'desocupado'],
+    required: true
   }
 });
 
-const Parqueadero = mongoose.model('Parqueadero', parqueaderoSchema);
-export default Parqueadero;
+export default mongoose.model('Parqueadero', parqueaderoSchema);

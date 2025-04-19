@@ -6,7 +6,7 @@ export const crearMensaje = async (req, res) => {
     await nuevoMensaje.save();
     res.status(201).json(nuevoMensaje);
   } catch (error) {
-    res.status(400).json({ mensaje: 'Error al crear mensaje', error });
+    res.status(400).json({ mensaje: 'Error al enviar mensaje', error });
   }
 };
 

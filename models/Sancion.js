@@ -10,7 +10,7 @@ const sancionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  monto: {
+  valor: {
     type: Number,
     required: true,
   },
@@ -18,6 +18,11 @@ const sancionSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  estado: {
+    type: String,
+    enum: ['pendiente', 'pagada'],
+    default: 'pendiente',
+  }
 });
 
 const Sancion = mongoose.model('Sancion', sancionSchema);

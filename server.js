@@ -9,6 +9,8 @@ import parqueaderosRoutes from './routes/parqueaderosRoutes.js';
 import pagosRoutes from './routes/pagosRoutes.js';
 import mensajesRoutes from './routes/mensajesRoutes.js';
 import reportesRoutes from './routes/reportesRoutes.js';
+import eventosRoutes from './routes/eventosRoutes.js';       // ✅ NUEVO
+import sancionesRoutes from './routes/sancionesRoutes.js';   // ✅ NUEVO
 
 dotenv.config();
 
@@ -31,12 +33,11 @@ app.use('/api/parqueaderos', parqueaderosRoutes);
 app.use('/api/pagos', pagosRoutes);
 app.use('/api/mensajes', mensajesRoutes);
 app.use('/api/reportes', reportesRoutes);
+app.use('/api/eventos', eventosRoutes);         // ✅ Agregado
+app.use('/api/sanciones', sancionesRoutes);     // ✅ Agregado
 
 // Conexión a MongoDB
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(MONGO_URI)
   .then(() => console.log('✅ Conectado a MongoDB Atlas'))
   .catch((error) => console.error('❌ Error al conectar con MongoDB Atlas:', error));
 
@@ -44,4 +45,3 @@ mongoose.connect(MONGO_URI, {
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en: http://localhost:${PORT}`);
 });
-

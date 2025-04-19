@@ -19,6 +19,19 @@ export const obtenerPagos = async (req, res) => {
   }
 };
 
+export const obtenerPagoPorId = async (req, res) => {
+  try {
+    const pago = await Pago.findById(req.params.id);
+    if (!pago) {
+      return res.status(404).json({ mensaje: "Pago no encontrado" });
+    }
+    res.json(pago);
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al obtener el pago" });
+  }
+};
+
+
 export const actualizarPago = async (req, res) => {
   try {
     const pagoActualizado = await Pago.findByIdAndUpdate(
